@@ -3,14 +3,91 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Photography | Your Name</title>
+  <title>Photography Portfolio</title>
   <link rel="stylesheet" href="style.css">
-</head>
-<body class="content">
-  <h1>Photography</h1>
-  <a href="index.html" class="back-link">← Back to Home</a>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #111;
+      color: #fff;
+      text-align: center;
+    }
 
-<div class="gallery">
+    h1 {
+      margin: 20px;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 10px;
+      padding: 20px;
+    }
+
+    .gallery img {
+      width: 100%;
+      height: auto;
+      cursor: pointer;
+      border-radius: 8px;
+      transition: transform 0.3s;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.05);
+    }
+
+    /* Lightbox */
+    .lightbox {
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.9);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .lightbox img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 10px;
+    }
+
+    .close, .prev, .next {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 2rem;
+      color: white;
+      cursor: pointer;
+      user-select: none;
+      padding: 10px;
+    }
+
+    .close {
+      top: 20px;
+      right: 30px;
+      transform: none;
+      font-size: 2.5rem;
+    }
+
+    .prev {
+      left: 30px;
+    }
+
+    .next {
+      right: 30px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Photography Portfolio</h1>
+
+  <div class="gallery">
     <img src="assets/photo1.jpg" alt="Photography 1">
     <img src="assets/photo2.jpg" alt="Photography 2">
     <img src="assets/photo3.jpg" alt="Photography 3">
@@ -28,52 +105,48 @@
     <img src="assets/photo15.jpg" alt="Photography 15">
   </div>
 
-  <!-- Fullscreen Viewer -->
-  <div id="viewer" class="viewer">
-    <span class="close" id="close-viewer">&times;</span>
-    <img id="viewer-img" src="">
-    <span class="nav prev" id="prev">&#10094;</span>
-    <span class="nav next" id="next">&#10095;</span>
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <span class="close" onclick="closeLightbox()">&times;</span>
+    <span class="prev" onclick="changeSlide(-1)">&#10094;</span>
+    <img id="lightbox-img" src="">
+    <span class="next" onclick="changeSlide(1)">&#10095;</span>
   </div>
 
   <script>
     const images = document.querySelectorAll('.gallery img');
-    const viewer = document.getElementById('viewer');
-    const viewerImg = document.getElementById('viewer-img');
-    const closeViewer = document.getElementById('close-viewer');
-    const prev = document.getElementById('prev');
-    const next = document.getElementById('next');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
     let currentIndex = 0;
 
     images.forEach((img, index) => {
       img.addEventListener('click', () => {
-        viewer.style.display = 'flex';
-        viewerImg.src = img.src;
         currentIndex = index;
+        openLightbox();
       });
     });
 
-    closeViewer.addEventListener('click', () => {
-      viewer.style.display = 'none';
-    });
+    function openLightbox() {
+      lightbox.style.display = 'flex';
+      lightboxImg.src = images[currentIndex].src;
+    }
 
-    prev.addEventListener('click', () => {
-      currentIndex = (currentIndex - 1 + images.length) % images.length;
-      viewerImg.src = images[currentIndex].src;
-    });
+    function closeLightbox() {
+      lightbox.style.display = 'none';
+    }
 
-    next.addEventListener('click', () => {
-      currentIndex = (currentIndex + 1) % images.length;
-      viewerImg.src = images[currentIndex].src;
-    });
+    function changeSlide(direction) {
+      currentIndex += direction;
+      if (currentIndex < 0) currentIndex = images.length - 1;
+      if (currentIndex >= images.length) currentIndex = 0;
+      lightboxImg.src = images[currentIndex].src;
+    }
 
-    // Swipe support (mobile)
-    let startX = 0;
-    viewer.addEventListener('touchstart', e => startX = e.touches[0].clientX);
-    viewer.addEventListener('touchend', e => {
-      let endX = e.changedTouches[0].clientX;
-      if (startX - endX > 50) next.click();
-      if (endX - startX > 50) prev.click();
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowRight') changeSlide(1);
+      if (e.key === 'ArrowLeft') changeSlide(-1);
     });
   </script>
 </body>
