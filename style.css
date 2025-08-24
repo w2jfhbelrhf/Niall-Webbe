@@ -194,3 +194,16 @@ h1 {
     padding: 8px 16px;
   }
 }
+/* Lightbox image fade transition */
+.lightbox img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 10px;
+  opacity: 0;
+  transition: opacity 0.4s ease-in-out;
+}
+
+/* When lightbox is visible, fade in image */
+.lightbox.show img {
+  opacity: 1;
+}
