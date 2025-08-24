@@ -239,3 +239,29 @@ h1 {
     padding: 5px;
   }
 }
+/* Make headings scale better on small screens */
+h1 {
+  font-size: 2rem;
+}
+
+@media (max-width: 600px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  .gallery {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 6px;
+    padding: 10px;
+  }
+
+  .back-home {
+    font-size: 0.9rem;
+    padding: 6px 12px;
+  }
+
+  .close, .prev, .next {
+    font-size: 1.5rem;
+    padding: 5px;
+  }
+}
