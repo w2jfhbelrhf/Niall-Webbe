@@ -1,13 +1,19 @@
-/* General Reset */
+/* ------------------------------
+   GENERAL RESET & BODY
+--------------------------------*/
 body {
   margin: 0;
   font-family: Arial, sans-serif;
   color: white;
+  text-align: center;
+  background: #111;
 }
 
-/* Landing Page */
+/* ------------------------------
+   LANDING PAGE
+--------------------------------*/
 .landing {
-  background: url("assets/background.jpg") no-repeat center center/cover;
+  background: #111 url("assets/background.jpg") no-repeat center center/cover;
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -36,7 +42,9 @@ body {
   color: black;
 }
 
-/* Modal (Showreel) */
+/* ------------------------------
+   MODAL (SHOWREEL)
+--------------------------------*/
 .modal {
   display: none;
   position: fixed;
@@ -61,16 +69,28 @@ body {
   color: white;
 }
 
-/* Photography Gallery */
-body {
-  background: #111;
-  color: #fff;
-  text-align: center;
-}
-
+/* ------------------------------
+   PHOTOGRAPHY PAGE
+--------------------------------*/
 h1 {
   margin: 20px;
   font-size: 2rem;
+}
+
+.back-home {
+  display: inline-block;
+  margin: 15px;
+  text-decoration: none;
+  color: #fff;
+  font-size: 1rem;
+  background: rgba(255,255,255,0.1);
+  padding: 8px 14px;
+  border-radius: 5px;
+  transition: background 0.3s;
+}
+
+.back-home:hover {
+  background: rgba(255,255,255,0.3);
 }
 
 .gallery {
@@ -92,7 +112,7 @@ h1 {
   transform: scale(1.05);
 }
 
-/* Lightbox */
+/* LIGHTBOX */
 .lightbox {
   display: none;
   position: fixed;
@@ -138,24 +158,13 @@ h1 {
   right: 30px;
 }
 
-/* Back to Home link */
-.back-home {
-  display: inline-block;
-  margin: 15px;
-  text-decoration: none;
-  color: #fff;
-  font-size: 1rem;
-  background: rgba(255,255,255,0.1);
-  padding: 8px 14px;
-  border-radius: 5px;
-  transition: background 0.3s;
-}
-
-/* ===== MOBILE STYLES ===== */
+/* ------------------------------
+   RESPONSIVE / MOBILE
+--------------------------------*/
 @media (max-width: 768px) {
-  /* Use a lighter background image on phones */
+  /* Optional: smaller background for mobile */
   .landing {
-    background: url("assets/background-small.jpg") no-repeat center center/cover;
+    background: #111 url("assets/background.jpg") no-repeat center center/cover;
   }
 }
 
@@ -178,5 +187,10 @@ h1 {
   .close, .prev, .next {
     font-size: 1.5rem;
     padding: 5px;
+  }
+
+  .overlay a {
+    font-size: 1.5rem;
+    padding: 8px 16px;
   }
 }
