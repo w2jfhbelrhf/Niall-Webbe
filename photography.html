@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Photography | Your Name</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="content">
+  <h1>Photography</h1>
+  <a href="index.html" class="back-link">← Back to Home</a>
+
+  <div class="gallery">
+    <img src="assets/photo1.jpg" alt="Photo 1" class="thumb">
+    <img src="assets/photo2.jpg" alt="Photo 2" class="thumb">
+    <img src="assets/photo3.jpg" alt="Photo 3" class="thumb">
+  </div>
+
+  <!-- Fullscreen Viewer -->
+  <div id="viewer" class="viewer">
+    <span class="close" id="close-viewer">&times;</span>
+    <img id="viewer-img" src="">
+    <span class="nav prev" id="prev">&#10094;</span>
+    <span class="nav next" id="next">&#10095;</span>
+  </div>
+
+  <script>
+    const images = document.querySelectorAll('.gallery img');
+    const viewer = document.getElementById('viewer');
+    const viewerImg = document.getElementById('viewer-img');
+    const closeViewer = document.getElementById('close-viewer');
+    const prev = document.getElementById('prev');
+    const next = document.getElementById('next');
+    let currentIndex = 0;
+
+    images.forEach((img, index) => {
+      img.addEventListener('click', () => {
+        viewer.style.display = 'flex';
+        viewerImg.src = img.src;
+        currentIndex = index;
+      });
+    });
+
+    closeViewer.addEventListener('click', () => {
+      viewer.style.display = 'none';
+    });
+
+    prev.addEventListener('click', () => {
+      currentIndex = (currentIndex - 1 + images.length) % images.length;
+      viewerImg.src = images[currentIndex].src;
+    });
+
+    next.addEventListener('click', () => {
+      currentIndex = (currentIndex + 1) % images.length;
+      viewerImg.src = images[currentIndex].src;
+    });
+
+    // Swipe support (mobile)
+    let startX = 0;
+    viewer.addEventListener('touchstart', e => startX = e.touches[0].clientX);
+    viewer.addEventListener('touchend', e => {
+      let endX = e.changedTouches[0].clientX;
+      if (startX - endX > 50) next.click();
+      if (endX - startX > 50) prev.click();
+    });
+  </script>
+</body>
+</html>
