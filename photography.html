@@ -75,3 +75,28 @@
   </script>
 </body>
 </html>
+function openLightbox() {
+  lightbox.style.display = 'flex';
+  lightbox.classList.add('show');
+  lightboxImg.style.opacity = 0;
+  lightboxImg.src = images[currentIndex].src;
+  setTimeout(() => {
+    lightboxImg.style.opacity = 1;
+  }, 50); // slight delay to trigger transition
+}
+
+function changeSlide(direction) {
+  currentIndex += direction;
+  if (currentIndex < 0) currentIndex = images.length - 1;
+  if (currentIndex >= images.length) currentIndex = 0;
+
+  // fade out current image
+  lightboxImg.style.opacity = 0;
+
+  setTimeout(() => {
+    lightboxImg.src = images[currentIndex].src;
+    lightboxImg.style.opacity = 1;
+  }, 200); // matches half of CSS transition duration for smoothness
+}
+
+
