@@ -3,19 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portfolio | Niall Webbe</title>
+  <title>Niall Webbe Portfolio</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body class="landing">
 
-  <!-- Overlay Links -->
   <div class="overlay">
     <a href="#" id="showreel-link">Showreel</a>
     <a href="photography.html">Photography</a>
     <a href="contact.html" class="contact-btn">Contact</a>
   </div>
 
-  <!-- Fullscreen Showreel Modal -->
+  <!-- Showreel modal -->
   <div id="showreel-modal" class="modal">
     <span class="close" id="close-modal">&times;</span>
     <video id="showreel-video" controls>
@@ -44,10 +43,61 @@
 
     document.addEventListener('keydown', e => {
       if (e.key === 'Escape') {
-        if (modal.style.display === 'flex') {
-          modal.style.display = 'none';
-          video.pause();
-        }
+        modal.style.display = 'none';
+        video.pause();
+      }
+    });
+  </script>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Niall Webbe Portfolio</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="landing">
+
+  <div class="overlay">
+    <a href="#" id="showreel-link">Showreel</a>
+    <a href="photography.html">Photography</a>
+    <a href="contact.html" class="contact-btn">Contact</a>
+  </div>
+
+  <!-- Showreel modal -->
+  <div id="showreel-modal" class="modal">
+    <span class="close" id="close-modal">&times;</span>
+    <video id="showreel-video" controls>
+      <source src="assets/showreel.mp4" type="video/mp4">
+      Your browser does not support video playback.
+    </video>
+  </div>
+
+  <script>
+    const showreelLink = document.getElementById('showreel-link');
+    const modal = document.getElementById('showreel-modal');
+    const closeModal = document.getElementById('close-modal');
+    const video = document.getElementById('showreel-video');
+
+    showreelLink.addEventListener('click', e => {
+      e.preventDefault();
+      modal.style.display = 'flex';
+      video.pause();
+      video.currentTime = 0;
+    });
+
+    closeModal.addEventListener('click', () => {
+      modal.style.display = 'none';
+      video.pause();
+    });
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') {
+        modal.style.display = 'none';
+        video.pause();
       }
     });
   </script>
