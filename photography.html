@@ -45,7 +45,6 @@
     const lightboxImg = document.getElementById('lightbox-img');
     let currentIndex = 0;
 
-    // Open lightbox on click
     images.forEach((img, index) => {
       img.addEventListener('click', () => {
         currentIndex = index;
@@ -57,21 +56,15 @@
       lightbox.style.display = 'flex';
       lightboxImg.style.opacity = 0;
       lightboxImg.src = images[currentIndex].src;
-      setTimeout(() => {
-        lightboxImg.style.opacity = 1;
-      }, 50);
+      setTimeout(() => { lightboxImg.style.opacity = 1; }, 50);
     }
 
-    function closeLightbox() {
-      lightbox.style.display = 'none';
-    }
+    function closeLightbox() { lightbox.style.display = 'none'; }
 
     function changeSlide(direction) {
       currentIndex += direction;
       if (currentIndex < 0) currentIndex = images.length - 1;
       if (currentIndex >= images.length) currentIndex = 0;
-
-      // fade out current image
       lightboxImg.style.opacity = 0;
       setTimeout(() => {
         lightboxImg.src = images[currentIndex].src;
@@ -79,26 +72,18 @@
       }, 200);
     }
 
-    // Keyboard navigation
-    document.addEventListener('keydown', (e) => {
+    document.addEventListener('keydown', e => {
       if (e.key === 'Escape') closeLightbox();
       if (e.key === 'ArrowRight') changeSlide(1);
       if (e.key === 'ArrowLeft') changeSlide(-1);
     });
 
-    // Swipe support
     let startX = 0;
-    lightbox.addEventListener('touchstart', e => {
-      startX = e.touches[0].clientX;
-    });
-
+    lightbox.addEventListener('touchstart', e => { startX = e.touches[0].clientX; });
     lightbox.addEventListener('touchend', e => {
       const endX = e.changedTouches[0].clientX;
       const diff = startX - endX;
-      if (Math.abs(diff) > 50) {
-        if (diff > 0) changeSlide(1); // swipe left → next
-        else changeSlide(-1);          // swipe right → previous
-      }
+      if (Math.abs(diff) > 50) diff > 0 ? changeSlide(1) : changeSlide(-1);
     });
   </script>
 </body>
