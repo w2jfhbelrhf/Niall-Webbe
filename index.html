@@ -25,13 +25,11 @@
   </div>
 
   <script>
-    // Showreel modal logic
     const showreelLink = document.getElementById('showreel-link');
     const modal = document.getElementById('showreel-modal');
     const closeModal = document.getElementById('close-modal');
     const video = document.getElementById('showreel-video');
 
-    // Open modal
     showreelLink.addEventListener('click', e => {
       e.preventDefault();
       modal.style.display = 'flex';
@@ -39,13 +37,11 @@
       video.currentTime = 0;
     });
 
-    // Close modal
     closeModal.addEventListener('click', () => {
       modal.style.display = 'none';
       video.pause();
     });
 
-    // Close modal on ESC key
     document.addEventListener('keydown', e => {
       if (e.key === 'Escape') {
         if (modal.style.display === 'flex') {
