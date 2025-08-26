@@ -14,7 +14,7 @@
     <a href="contact.html">Contact</a>
   </div>
 
-  <!-- Showreel Modal -->
+  <!-- Showreel modal -->
   <div id="showreel-modal" class="modal">
     <span class="close" id="close-modal">&times;</span>
     <video id="showreel-video" controls>
@@ -42,10 +42,7 @@
     });
 
     document.addEventListener('keydown', e => {
-      if (e.key === 'Escape') {
-        modal.style.display = 'none';
-        video.pause();
-      }
+      if(e.key==='Escape'){ modal.style.display='none'; video.pause(); }
     });
   </script>
 
