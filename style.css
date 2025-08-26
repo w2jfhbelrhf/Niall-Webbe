@@ -241,3 +241,26 @@ h1 {
 .lightbox.show img {
   opacity: 1;
 }
+/* CONTACT BUTTON (same style as other landing buttons) */
+.contact-btn {
+  text-decoration: none;
+  font-size: 2rem;
+  color: white;
+  padding: 10px 20px;
+  border: 2px solid white;
+  border-radius: 8px;
+  transition: 0.3s;
+}
+
+.contact-btn:hover {
+  background: white;
+  color: black;
+}
+
+/* Responsive adjustments for all landing buttons, including Contact */
+@media (max-width: 600px) {
+  .overlay a, .contact-btn {
+    font-size: 1.5rem;
+    padding: 8px 16px;
+  }
+}
