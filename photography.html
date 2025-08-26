@@ -23,11 +23,11 @@
     <img src="assets/photo8.jpg" alt="Photo 8">
     <img src="assets/photo9.jpg" alt="Photo 9">
     <img src="assets/photo10.jpg" alt="Photo 10">
-    <img src="assets/photo10.jpg" alt="Photo 11">
-    <img src="assets/photo10.jpg" alt="Photo 12">
-    <img src="assets/photo10.jpg" alt="Photo 13">
-    <img src="assets/photo10.jpg" alt="Photo 14">
-    <img src="assets/photo10.jpg" alt="Photo 15">
+    <img src="assets/photo11.jpg" alt="Photo 11">
+    <img src="assets/photo12.jpg" alt="Photo 12">
+    <img src="assets/photo13.jpg" alt="Photo 13">
+    <img src="assets/photo14.jpg" alt="Photo 14">
+    <img src="assets/photo15.jpg" alt="Photo 15">
   </div>
 
   <div class="lightbox" id="lightbox">
@@ -38,33 +38,31 @@
   </div>
 
   <script>
-    const images = document.querySelectorAll('.gallery img');
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImg = document.getElementById('lightbox-img');
-    let currentIndex = 0;
+    const images=document.querySelectorAll('.gallery img');
+    const lightbox=document.getElementById('lightbox');
+    const lightboxImg=document.getElementById('lightbox-img');
+    let currentIndex=0;
 
-    images.forEach((img,index)=>{
-      img.addEventListener('click', ()=>{
-        currentIndex = index;
-        openLightbox();
-      });
-    });
+    images.forEach((img,index)=>img.addEventListener('click',()=>{
+      currentIndex=index;
+      openLightbox();
+    }));
 
     function openLightbox(){
       lightbox.style.display='flex';
-      lightboxImg.src = images[currentIndex].src;
+      lightboxImg.src=images[currentIndex].src;
     }
 
     function closeLightbox(){lightbox.style.display='none';}
 
     function changeSlide(dir){
       currentIndex+=dir;
-      if(currentIndex<0) currentIndex=images.length-1;
-      if(currentIndex>=images.length) currentIndex=0;
-      lightboxImg.src = images[currentIndex].src;
+      if(currentIndex<0)currentIndex=images.length-1;
+      if(currentIndex>=images.length)currentIndex=0;
+      lightboxImg.src=images[currentIndex].src;
     }
 
-    document.addEventListener('keydown', e => {
+    document.addEventListener('keydown',e=>{
       if(e.key==='Escape') closeLightbox();
       if(e.key==='ArrowRight') changeSlide(1);
       if(e.key==='ArrowLeft') changeSlide(-1);
