@@ -12,12 +12,44 @@ body.landing, body.contact-page {
   justify-content: center;
   align-items: center;
   background-attachment: fixed;
+  text-align: center;
 }
 
 /* LANDING PAGE */
-.overlay{display:flex;flex-direction:column;gap:20px;text-align:center;}
-.overlay a{font-size:2rem;color:white;padding:10px 20px;border:2px solid white;border-radius:8px;transition:0.3s;}
-.overlay a:hover{background:white;color:black;}
+.overlay {
+  display: flex;
+  flex-direction: column;
+  gap: 2vh;               /* gap scales with viewport height */
+  align-items: center;
+  justify-content: center;
+}
+
+.front-name {
+  font-size: clamp(2rem, 5vw, 4rem);  /* scales smoothly between 2rem and 4rem */
+  margin-bottom: 2vh;
+  color: white;
+  font-weight: 600;
+  text-shadow: 3px 3px 8px rgba(0,0,0,0.7);
+  transition: transform 0.3s;
+}
+
+.front-name:hover {
+  transform: scale(1.05);
+}
+
+.overlay a {
+  font-size: clamp(1.5rem, 3vw, 2.5rem);  /* responsive link size */
+  color: white;
+  padding: 1vh 2vw;
+  border: 2px solid white;
+  border-radius: 8px;
+  transition: 0.3s;
+}
+
+.overlay a:hover {
+  background: white;
+  color: black;
+}
 
 /* MODAL */
 .modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.95);justify-content:center;align-items:center;z-index:1000;}
@@ -55,6 +87,7 @@ body.landing, body.contact-page {
 
 /* RESPONSIVE */
 @media(max-width:600px){
+  .front-name{font-size:2rem;margin-bottom:2vh;}
   .overlay a,.contact-page p,.contact-page a{font-size:1.5rem;padding:8px 16px;}
   .gallery{grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:6px;padding:10px;}
 }
