@@ -27,4 +27,20 @@ a{text-decoration:none;color:white;}
 .next{right:30px;}
 
 /* BACK LINK */
-.back-home{display:inline-block;margin:15px;padding:8px 14px;border-radius:5px;background:rgba(255
+.back-home{display:inline-block;margin:15px;padding:8px 14px;border-radius:5px;background:rgba(255,255,255,0.1);color:white;transition:background 0.3s;}
+.back-home:hover{background:rgba(255,255,255,0.3);}
+
+/* CONTACT PAGE */
+.contact-page{background:url("assets/contact-background.jpg") no-repeat center center/cover;height:100vh;display:flex;justify-content:center;align-items:center;}
+.contact-content{display:flex;flex-direction:column;align-items:center;gap:20px;text-align:center;}
+.contact-content h1{font-size:2.5rem;}
+.contact-content p,a{font-size:1.2rem;color:white;}
+.contact-content a:hover{text-decoration:underline;}
+
+/* RESPONSIVE */
+@media(max-width:600px){
+  .overlay a,.contact-content p,.contact-content a{font-size:1.5rem;padding:8px 16px;}
+  .gallery{grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:6px;padding:10px;}
+  .contact-content h1{font-size:1.8rem;}
+  .close,.prev,.next{font-size:1.5rem;padding:5px;}
+}
